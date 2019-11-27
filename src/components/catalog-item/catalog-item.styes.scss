@@ -1,0 +1,39 @@
+@import '../../scss/variables.scss';
+
+.catalog-item {
+    width: 142px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    .summary-link {
+        text-decoration: none;
+    }
+
+    .poster {
+        height: 200px;
+        width: 140px;
+        border: 2px solid $purple;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow: hidden;
+    }
+
+    .title {
+        margin: 0;
+        padding: 5px;
+        font-size: 13px;
+        color: $white !important;
+    }
+
+    .details {
+        display: flex;
+        justify-content: space-between;
+
+        .release-date, .type {
+            color: $white;
+            font-size: 14px;
+        }
+    }
+}

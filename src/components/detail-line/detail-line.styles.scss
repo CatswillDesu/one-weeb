@@ -1,0 +1,19 @@
+@import '../../scss/variables.scss';
+
+.detail-line {
+    margin-bottom: 15px;
+
+    .type {
+        display: inline-block;
+        padding-right: 10px;
+        color: $gray;
+    }
+
+    .value {
+        color: $white;
+    }
+
+    &:last-child {
+        margin-bottom: unset;
+    }
+}

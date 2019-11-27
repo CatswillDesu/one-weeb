@@ -1,0 +1,17 @@
+@import '../../scss/variables.scss'; 
+
+.search-field {
+    position: relative;
+    width: 330px;
+    height: 40px;
+    padding-left: 45px;
+    border: none;
+    border-radius: 5px;
+    margin: 8px 20px 8px 40px;
+    font-size: 18px;
+    color: $dark-gray;
+    background-color: #fff;
+    background-image: url(../../assets/search-icon.svg);
+    background-repeat: no-repeat;
+    background-position: 9px 50%;
+}

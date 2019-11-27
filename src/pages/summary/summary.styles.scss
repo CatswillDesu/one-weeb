@@ -1,0 +1,52 @@
+@import '../../scss/variables.scss'; 
+
+.anime {
+    .title {
+        text-align: left;
+        color: $white;
+        font-size: 30px;
+    }
+
+    .summary-container {
+        display: flex;
+
+        .poster {
+            position: relative;
+            width: 292.5px;
+            height: 412.5px;
+            border: 2px solid $purple;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            // overflow: hidden;
+        }
+
+        .rating-score {
+            position: absolute;
+            top: 320px;
+            left: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-width: 2px;
+            border-style: solid;
+            border-radius: 50%;;
+            background-color: $purple;
+            color: $white;
+        }
+
+        .rating-score.bad {
+            border-color: #a00606;
+        }
+
+        .rating-score.neutral {
+            border-color: #beca0d;
+        }
+
+        .rating-score.good {
+            border-color: #177c3e;
+        }
+    }
+}

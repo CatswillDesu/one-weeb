@@ -1,0 +1,41 @@
+@import '../../scss/variables.scss';
+
+.page-header {
+    display: flex;
+    height: 60px;
+    border-bottom: 3px solid $purple;
+
+    .logo {
+        padding: 12px 20px;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 28px;
+        color: $gray;
+        font-weight: bold;
+        transition: color 250ms;
+
+        &:hover {
+            color: $white;
+            transition: color 250ms;
+        }
+    }
+    
+    .options {
+        display: flex;
+        margin-left: auto;
+
+        .option {
+            padding: 15px 10px;
+            text-decoration: none;
+            font-size: 20px;
+            color: $gray;
+            transition: color 250ms;
+
+            &:hover {
+                color: $white;
+                transition: color 250ms;
+            }
+        }
+    }
+}
+

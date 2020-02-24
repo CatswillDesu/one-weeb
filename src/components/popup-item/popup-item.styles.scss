@@ -1,0 +1,46 @@
+@import '../../scss/colors.scss';
+
+.popup-item {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border-top: 2px solid #000;
+    color: unset;
+    text-decoration: none;
+
+    &:hover {
+        background-color: darken(#fff, 5%);
+    }
+
+    .title {
+        margin: 0;
+        margin-bottom: 5px;
+        text-align: center;
+        font-size: 16px;
+        color: #000;
+    }
+
+    .sub-container {
+        display: flex;
+        flex-direction: row;
+
+        @media screen and (max-width: 700px) {  
+            border-bottom: none !important;
+        }
+
+        .poster {
+            height: 120px;
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            margin-left: 15px;
+
+            .detail-item {
+                font-size: 14px;
+                margin-bottom: 6px;
+            }
+        }
+    } 
+}

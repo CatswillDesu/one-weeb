@@ -1,9 +1,10 @@
-export function routeConverter(type, filterText) {
+export function routeConverter(type, titleId, filterText) {
     const routes = {
         'top-popular': '?sort=popularityRank',
         'top-rated': '?sort=ratingRank',
         'top-trending': '?filter[status]=current&sort=popularityRank',
-        'exact': `${filterText}`
+        'text-filter': `&filter[text]=${filterText}`,
+        'exact': `${titleId}`
     }
     
     return routes[type];
@@ -25,3 +26,5 @@ export async function requestUrl(url) {
 }
 
 export const rootPath = 'https://kitsu.io/api/edge';
+
+export const defaultPaginationOffset = 16;

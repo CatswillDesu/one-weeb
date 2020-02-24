@@ -1,0 +1,25 @@
+.catalog-preview {
+    .title {
+        color: #fff;
+        letter-spacing: 1.5px;
+    }
+
+    .list {
+        display: flex;
+        justify-content: space-around;
+
+        @media screen and (max-width: 700px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px 15px;
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 40px;
+    } 
+
+    a {
+        text-decoration: unset;
+    }
+}

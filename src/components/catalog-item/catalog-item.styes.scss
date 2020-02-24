@@ -1,39 +1,133 @@
-@import '../../scss/variables.scss';
+@import '../../scss/colors.scss';
 
 .catalog-item {
-    width: 142px;
+    position: relative;
     display: flex;
+    width: 142px;
     flex-direction: column;
     cursor: pointer;
 
+    @media screen and (max-width: 700px) {
+        align-items: center;    
+        width: 100%;
+    }
+
+    .to-collection-button {
+        position: absolute;
+        display: none;
+        width: 80%;
+        padding: 0;
+        border: 2px solid;
+        border-color: $purple;
+        border-radius: 20px;
+        background-color: $bg-color;
+        color: $white;
+        cursor: pointer;
+    
+        &:hover {
+            border-color: $bg-color;
+            background-color: $white;
+            color: lighten($purple, 10%);
+        }
+    }
+
     .summary-link {
         text-decoration: none;
+
+        @media screen and (max-width: 700px) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+       
+        .poster {
+            border: 2px solid $purple;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .footer {
+            .title {
+                margin: 0;
+                padding: 5px;
+                color: $white !important;
+                text-transform: unset;
+            }
+        
+            .details {
+                display: flex;
+                justify-content: space-between;
+    
+                @media screen and (max-width: 700px) {
+                    width: 170px;
+                }
+        
+                .release-date, .type {
+                    color: $white;
+                    font-size: 14px;
+                }
+            }
+        }     
     }
 
-    .poster {
-        height: 200px;
-        width: 140px;
-        border: 2px solid $purple;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        overflow: hidden;
+    &.sm-size {
+        .title {
+            font-size: 13px;
+
+            @media screen and (max-width: 700px) {
+                font-size: 16px;
+            }
+        }
+
+        .poster {
+            height: 200px;
+            width: 140px;
+
+            @media screen and (max-width: 700px) {
+                height: 240px;
+                width: 170px;
+            }
+        }
+
+        .to-collection-button {
+            top: 157.5px;
+            margin-left: 9%;
+            height: 30px;
+        }
     }
 
-    .title {
-        margin: 0;
-        padding: 5px;
-        font-size: 13px;
-        color: $white !important;
+    &.md-size {
+        .title {
+            font-size: 16px;
+        }
+
+        .poster {
+            height: 300px;
+            width: 210px;
+
+            @media screen and (max-width: 700px) {
+                height: 240px;
+                width: 170px;
+            }
+        }
+
+        .to-collection-button {
+            top: 240px;
+            margin-left: 9%;
+            height: 40px;
+            font-size: 17px;
+        }
     }
 
-    .details {
-        display: flex;
-        justify-content: space-between;
+    &:hover {
+        .to-collection-button {
+            display: block;
 
-        .release-date, .type {
-            color: $white;
-            font-size: 14px;
+            @media screen and (max-width: 700px) {
+                display: none;
+            }
         }
     }
 }

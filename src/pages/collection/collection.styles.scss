@@ -1,3 +1,71 @@
-h1 {
-    text-align: center;
+@import '../../scss/colors.scss'; 
+
+.collection-page {
+    .collection-header {
+        display: flex;
+        border: 2px solid $purple;
+        background-color: $white;
+
+        @media screen and (max-width: 700px) {
+            justify-content: space-around;
+        }
+
+        .header-item {
+            display: flex;
+            align-items: center;
+            height: 40px;
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            @media screen and (max-width: 700px) {
+                font-size: 12px;
+                margin-left: 10px;
+            }
+
+            &.anime-title {
+                width: 57.5%;
+                padding-left: 3%;
+
+                @media screen and (max-width: 700px) {
+                    width: unset;
+                    padding-left: 0;
+                }
+            }
+
+            &.assesment,
+            &.status,
+            &.progress {
+                width: 12.5%;
+                justify-content: center;
+
+                @media screen and (max-width: 700px) {
+                    width: unset;
+                }
+            }
+
+            &:last-child {
+                border-right: unset;
+            }
+        }
+    }
+
+    .collection {
+        min-height: 70px;
+        border: 2px solid $purple;
+        border-top: unset;
+        margin-bottom: 40px;
+        background-color: $gray;
+
+        .empty-alert {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 70px;
+            margin: unset;
+            background-color: $gray;
+        }
+    }
 }

@@ -2,9 +2,9 @@ import React from 'react';
 
 import './spinner.styles.scss'
 
-function Spinner() {
+function Spinner({ size }) {
     return (
-        <div className="spinner-overlay">
+        <div className={`spinner-overlay ${size ? size : ''}`}>
             <div className="spinner"/>
         </div>
     )

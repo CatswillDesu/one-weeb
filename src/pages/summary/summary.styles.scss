@@ -1,24 +1,83 @@
-@import '../../scss/variables.scss'; 
+@import '../../scss/colors.scss'; 
 
-.anime {
-    .title {
-        text-align: left;
-        color: $white;
-        font-size: 30px;
+.anime-summary {
+    .sub-container {
+        display: flex;
+        align-items: center;
+
+        @media screen and (max-width: 700px) {
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .title {
+            padding-left: 30px;
+            text-align: left;
+            color: $white;
+            font-size: 32px;
+
+            @media screen and (max-width: 700px) {
+                padding: 0 15px;
+                margin-bottom: 15px;
+                text-align: center;
+                font-size: 34px;
+            }
+    
+            .release-year {
+                font-size: 25px;
+                margin-left: 10px;
+                color: $gray;
+            }
+        }
+    
+        .collection-button {
+            padding: 5px 10px;
+            border: 1px solid;
+            border-color: $gray;
+            border-radius: 10px;
+            margin-left: auto;
+            background-color: $white;
+            font-size: 15px;
+            font-weight: 600;
+            text-transform: lowercase;
+            color: $pink;
+            cursor: pointer;
+
+            &:hover,
+            &:active {
+                background-color: $gray; 
+                border-color: $pink;
+            }
+
+            @media screen and (max-width: 700px) {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+        }
     }
+    
 
-    .summary-container {
+    .sub-container {
         display: flex;
 
         .poster {
             position: relative;
             width: 292.5px;
+            min-width: 292.5px;
             height: 412.5px;
             border: 2px solid $purple;
+            margin-bottom: 20px;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            // overflow: hidden;
+
+            @media screen and (max-width: 700px) {
+                width: 250px;
+                min-width: 250px;
+                height: 350px;
+                margin-bottom: 45px;
+            }
         }
 
         .rating-score {
@@ -35,6 +94,13 @@
             border-radius: 50%;;
             background-color: $purple;
             color: $white;
+
+            @media screen and (max-width: 700px) {
+                top: 315px;
+                left: 215px;
+                width: 52px;
+                height: 52px;
+            }
         }
 
         .rating-score.bad {
@@ -48,5 +114,32 @@
         .rating-score.good {
             border-color: #177c3e;
         }
+
+        .sub-container {
+            flex-direction: column;
+            height: 412.5px;
+            padding-left: 100px;
+
+            @media screen and (max-width: 700px) {
+                height: unset;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .synopsis {
+                padding: 0 20px;
+                margin: 0;
+                margin-bottom: 25px;
+                font-size: 17px;
+                color: $white;
+
+                @media screen and (max-width: 700px) {
+                    padding: 0;
+                    text-align: center;
+                    font-size: 16px;
+                    line-height: 22px;
+                }
+            }
+        } 
     }
 }

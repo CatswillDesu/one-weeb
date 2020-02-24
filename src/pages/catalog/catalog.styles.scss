@@ -1,0 +1,27 @@
+.catalog-page {
+    @media screen and (max-width: 700px) {
+        padding: 0 20px;
+    }
+
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @media screen and (max-width: 700px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px 0px
+        }
+
+        .catalog-item {
+            width: 212px;
+            margin-bottom: 20px;
+            margin-right: 20px;
+
+            @media screen and (max-width: 700px) {
+                margin-right: 0;
+            }
+        }
+    }
+}

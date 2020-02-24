@@ -1,39 +1,66 @@
-@import '../../scss/variables.scss';
+@import '../../scss/colors.scss';
 
 .page-header {
     display: flex;
-    height: 60px;
     border-bottom: 3px solid $purple;
 
-    .logo {
-        padding: 12px 20px;
-        text-transform: uppercase;
-        text-decoration: none;
-        font-size: 28px;
-        color: $gray;
-        font-weight: bold;
-        transition: color 250ms;
-
-        &:hover {
-            color: $white;
-            transition: color 250ms;
-        }
+    @media screen and (max-width: 700px) {
+        flex-direction: column;  
+        align-items: center;  
     }
-    
-    .options {
+
+    .sub-container {
         display: flex;
-        margin-left: auto;
+        width: 100%;
 
-        .option {
-            padding: 15px 10px;
+        @media screen and (max-width: 700px) {
+            border-bottom: 3px solid $purple;
+        }
+
+        .logo {
+            padding: 12px 20px;
+            text-transform: uppercase;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 28px;
             color: $gray;
+            font-weight: bold;
             transition: color 250ms;
-
+    
             &:hover {
                 color: $white;
                 transition: color 250ms;
+            }
+    
+            @media screen and (max-width: 700px) {
+                font-size: 25px;
+            }
+        }
+        
+        .options {
+            display: flex;
+            margin-left: auto;
+            margin-right: 40px;
+
+            @media screen and (max-width: 700px) {
+                margin-right: 10px;
+                text-align: center;
+            }
+    
+            .option {
+                padding: 15px 10px;
+                text-decoration: none;
+                font-size: 20px;
+                color: $gray;
+                transition: color 250ms;
+    
+                @media screen and (max-width: 700px) {
+                    font-size: 20px;
+                }
+    
+                &:hover {
+                    color: $white;
+                    transition: color 250ms;
+                }
             }
         }
     }

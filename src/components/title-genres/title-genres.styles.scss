@@ -1,0 +1,42 @@
+@import '../../scss/colors.scss';
+
+.title-genres {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+    width: 100%;
+    padding: 25px 0;
+
+    @media screen and (max-width: 700px) {
+        padding: 0 10px;
+        margin-bottom: 12.5px;
+    }
+
+    .genre-item {
+        height: 26px;
+        border: 1px solid $gray;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 0;
+        margin-right: 10px;
+        margin-bottom: 10px;    
+        background-color: $white;
+        font-size: 12px;
+
+        .genre-link { 
+            color: $pink;
+            text-decoration: none;
+        }
+
+        &:last-child {
+            margin-right: none;
+        }
+
+        &:hover {
+            background-color: $gray; 
+            border: 1px solid $pink;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-@import '../../scss/variables.scss';
+@import '../../scss/colors.scss';
 
 .detail-line {
     margin-bottom: 15px;
@@ -6,11 +6,21 @@
     .type {
         display: inline-block;
         padding-right: 10px;
+        font-size: 15px;
         color: $gray;
+
+        @media screen and (max-width: 700px) {
+            font-size: 18px;
+        }
     }
 
     .value {
         color: $white;
+        font-size: 16px;
+
+        @media screen and (max-width: 700px) {
+            font-size: 19px;
+        }
     }
 
     &:last-child {

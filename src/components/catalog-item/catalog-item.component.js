@@ -1,26 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
+import { selectCollectionTitles } from '../../redux/collection/collection.selectors';
+import { addTitleToCollection } from '../../redux/collection/collection.actions';
 
 import './catalog-item.styes.scss';
 
-function CatalogItem(props) {
-    const { canonicalTitle: fullTitle, posterImage: { small: imageUrl }, startDate: releaseDate, averageRating, titleId } = props;
+function CatalogItem({ item, collectionTitles, addTitleToCollection }) {
+    const { canonicalTitle: fullTitle, posterImage, startDate: releaseDate, averageRating, id, itemSize } = item;
     const shortTitle = fullTitle.length > 16 ? (fullTitle.slice(0, 14) + '...') : fullTitle;
-    const releaseYear = releaseDate.slice(0, 4);
+    const mediumTitle = fullTitle.length > 24 ? (fullTitle.slice(0, 22) + '...') : fullTitle;
+    const releaseYear = releaseDate ? releaseDate.slice(0, 4) : '???';
     const rating = (+averageRating / 10).toFixed(2);
+    const imageUrl = posterImage ? posterImage.small : 'not found';
 
-    console.log(props);
+    const [isButtonHidden, toggleButtonHidden] = useState(false);
     
     const styles = {
         backgroundImage: `url(${imageUrl})`
     }
 
     return (
-        <li className="catalog-item">
-            <Link to={`/anime/${titleId}`} class="summary-link">
+        <li className={`catalog-item ${itemSize === 'small' ? 'sm-size' : 'md-size'}`}>
+        { !isButtonHidden && <button className="to-collection-button" onClick={() => {addTitleToCollection({collectionTitles, titleToAdd: item}); toggleButtonHidden(true)}}>Add to collection</button>}
+            <Link to={`/anime/${id}`} className="summary-link">
                 <div style={styles} className="poster"></div>
                 <div className="footer">
-                    <h4 className="title">{shortTitle}</h4>
+                    <h4 className="title">{itemSize === 'small' ? shortTitle : mediumTitle}</h4>
                     <div className="details">
                         <span className="release-date">{releaseYear}</span>
                         <span className="type">{rating}</span>
@@ -31,4 +38,16 @@ function CatalogItem(props) {
     )
 }
 
-export default CatalogItem;
+function mapStateToProps() {
+    return createStructuredSelector({
+        collectionTitles: selectCollectionTitles
+    })
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        addTitleToCollection: collectionData => dispatch(addTitleToCollection(collectionData))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CatalogItem);

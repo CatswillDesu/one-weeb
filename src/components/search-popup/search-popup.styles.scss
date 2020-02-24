@@ -1,0 +1,44 @@
+@import '../../scss/colors.scss';
+
+.search-popup-container {
+    position: absolute;
+    z-index: 100;
+    top: 48px;
+    left: -2px;
+    width: 304px;
+    min-height: 60px;
+    max-height: 400px;
+    border: 2px solid $dark-gray;
+    border-top: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    overflow: auto;
+
+    @media screen and (max-width: 700px) {
+        width: calc(100% + 4px);
+        top: 57px;
+    }
+
+    &.loading-mode {
+        height: 60px;
+    }
+
+    .search-popup {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .instruction,
+    .not-found-alert {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 55px;
+        margin: unset;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+}

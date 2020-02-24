@@ -15,6 +15,7 @@
 
         @media screen and (max-width: 700px) {
             border-bottom: 3px solid $purple;
+            align-items: center;
         }
 
         .logo {
@@ -41,8 +42,9 @@
             margin-right: 40px;
 
             @media screen and (max-width: 700px) {
+                display: flex;
+                align-items: center;
                 margin-right: 10px;
-                text-align: center;
             }
     
             .option {
@@ -51,8 +53,9 @@
                 font-size: 20px;
                 color: $gray;
                 transition: color 250ms;
-    
+                
                 @media screen and (max-width: 700px) {
+                    text-align: center;
                     font-size: 20px;
                 }
     

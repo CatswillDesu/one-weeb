@@ -6,13 +6,16 @@
 
     .list {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-around;
 
         @media screen and (max-width: 700px) {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 20px 15px;
-        }
+            .catalog-item {
+                flex-shrink: 0;
+                margin-bottom: 20px;
+                margin-right: 15px;
+            }
+        } 
     }
 
     &:last-child {

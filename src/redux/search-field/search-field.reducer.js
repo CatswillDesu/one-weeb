@@ -10,10 +10,15 @@ const INITIAL_STATE = {
 
 function searchFieldReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
-        case searchFieldTypes.TOGGLE_SEARCH_POPUP_HIDDEN:
+        case searchFieldTypes.OPEN_SEARCH_POPUP:
             return {
                 ...state,
-                hidden: !state.hidden
+                hidden: false
+            }
+        case searchFieldTypes.CLOSE_SEARCH_POPUP:
+            return {
+                ...state,
+                hidden: true
             }
         case searchFieldTypes.CHANGE_FILTER_TEXT:
             return {

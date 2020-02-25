@@ -14,7 +14,14 @@
         padding: 5px 10px;
         padding-right: 25px;
         background-color: #fff;
+        text-align: center;
         color: darken($gray, 20%);
+
+        @media screen and (max-width: 700px) {
+            width: auto;
+            max-width: 203.5px;
+            padding-right: 10px;
+        }
     }
 
     .current-option {
@@ -48,6 +55,7 @@
     .select-options {
         position: absolute;
         display: block;
+        width: 100%;
         border-radius: 4px;
 
         .select-option {

@@ -2,19 +2,19 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectFilterText, selectFilteredTitlesData, selectIsFilteredTitlesDataLoaded, selectIsSearchPopupLoading } from '../../redux/search-field/search-field.selectors';
-import { fetchFilteredTitlesStart, toggleSearchPopupHidden, clearFilteredTitles } from '../../redux/search-field/search-field.actions';
+import { fetchFilteredTitlesStart, clearFilteredTitles } from '../../redux/search-field/search-field.actions';
 
 import SearchPopup from './search-popup.component';
 import Spinner from '../spinner/spinner.component';
 
-function SearchPopupContainer({ filterText, filteredTitlesData, isFilteredTitlesDataLoaded, fetchFilteredTitlesStart, toggleSearchPopupHidden, isSearchPopupLoading, clearFilteredTitles }) {
+function SearchPopupContainer({ filterText, filteredTitlesData, isFilteredTitlesDataLoaded, fetchFilteredTitlesStart, isSearchPopupLoading, clearFilteredTitles }) {
     useEffect(() => {
         if (filterText.length > 2) {
             fetchFilteredTitlesStart(filterText);
         } else {
             clearFilteredTitles()
         };
-    }, [filterText, fetchFilteredTitlesStart, toggleSearchPopupHidden, clearFilteredTitles])
+    }, [filterText, fetchFilteredTitlesStart, clearFilteredTitles])
 
     return (
         <div className="search-popup-container" >
@@ -44,7 +44,6 @@ function mapStateToProps() {
 function mapDispatchToProps(dispatch) {
     return {
         fetchFilteredTitlesStart: filterText => dispatch(fetchFilteredTitlesStart(filterText)),
-        toggleSearchPopupHidden: () => dispatch(toggleSearchPopupHidden()),
         clearFilteredTitles: () => dispatch(clearFilteredTitles())
     }
 }

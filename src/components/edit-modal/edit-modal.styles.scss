@@ -1,13 +1,18 @@
 @import '../../scss/colors.scss';
 
 .collection-edit-modal {
-    position: fixed;
+    position: absolute;
     top: 10vh;
     left: calc(50vw - (400px / 2));
     width: 400px;
     padding: 10px;
     border-radius: 20px;
     background-color: $gray;
+
+    @media screen and (max-width: 700px) {
+        left: calc(50vw - (90vw / 2));
+        width: 90vw;
+    }
 
     .modal-header {
         display: flex;

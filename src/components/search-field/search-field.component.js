@@ -1,23 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectFilterText, selectIsSearchPopupHidden, selectIsFilteredTitlesDataLoaded } from '../../redux/search-field/search-field.selectors';
-import { changeFilterText, toggleSearchPopupHidden, clearSearchField } from '../../redux/search-field/search-field.actions';
+import { selectFilterText, selectIsSearchPopupHidden } from '../../redux/search-field/search-field.selectors';
+import { changeFilterText, openSearchPopup, closeSearchPopup, clearSearchField } from '../../redux/search-field/search-field.actions';
 
 import { ReactComponent as CrossIcon } from '../../assets/cross.svg';
 import { default as SearchPopup} from '../search-popup/search-popup.container';
 
 import './search-field.styles.scss';
 
-function SearchField({ filterText, changeFilterText, toggleSearchPopupHidden, isSearchPopupHidden, clearSearchField, isFilteredTitlesDataLoaded }) {
+function SearchField({ filterText, changeFilterText, openSearchPopup, closeSearchPopup, isSearchPopupHidden, clearSearchField }) {
     function handleChange(event) {
         const { value } = event.target;
         changeFilterText(value);
     }
 
     function clearField() {
-        toggleSearchPopupHidden();
         clearSearchField();
+        closeSearchPopup();
     }
 
     return (
@@ -25,7 +25,7 @@ function SearchField({ filterText, changeFilterText, toggleSearchPopupHidden, is
             <input
                 className={`search-field ${!isSearchPopupHidden ? 'loading-mode' : ''}`}
                 placeholder="Search..."
-                onFocus={toggleSearchPopupHidden}
+                onFocus={openSearchPopup}
                 value={filterText}
                 onChange={handleChange}
             />
@@ -43,15 +43,15 @@ function SearchField({ filterText, changeFilterText, toggleSearchPopupHidden, is
 function mapStateToProps() {
     return createStructuredSelector({
         filterText: selectFilterText,
-        isSearchPopupHidden: selectIsSearchPopupHidden,
-        isFilteredTitlesDataLoaded: selectIsFilteredTitlesDataLoaded
+        isSearchPopupHidden: selectIsSearchPopupHidden
     })
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         changeFilterText: newFilterText => dispatch(changeFilterText(newFilterText)),
-        toggleSearchPopupHidden: () => dispatch(toggleSearchPopupHidden()),
+        openSearchPopup: () => dispatch(openSearchPopup()),
+        closeSearchPopup: () => dispatch(closeSearchPopup()),
         clearSearchField: () => dispatch(clearSearchField())
     }
 }

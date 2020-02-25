@@ -1,8 +1,14 @@
 import searchFieldTypes from './search-field.types';
 
-export function toggleSearchPopupHidden() {
+export function openSearchPopup() {
     return {
-        type: searchFieldTypes.TOGGLE_SEARCH_POPUP_HIDDEN
+        type: searchFieldTypes.OPEN_SEARCH_POPUP
+    }
+}
+
+export function closeSearchPopup() {
+    return {
+        type: searchFieldTypes.CLOSE_SEARCH_POPUP
     }
 }
 

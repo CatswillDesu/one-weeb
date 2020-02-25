@@ -15,8 +15,6 @@ function SummaryContainer({ match: { params: { titleId } }, fetchSummaryStart, s
         return clearSummaryData
     }, [fetchSummaryStart, titleId, clearSummaryData])
 
-    if(isSummaryDataLoaded) console.log(summaryData)
-
     return isSummaryDataLoaded ?  (
         <SummaryPage title={{...summaryData.data.attributes, id: titleId}} genresLink={summaryData.data.relationships.genres.links.related} />
     ) : <Spinner />

@@ -9,6 +9,11 @@
     color: $white;
     cursor: pointer;
 
+    @media screen and (max-width: 700px) {
+        // padding: 2.5px 5px;
+        font-size: 16px;
+    }
+
     &:hover {
         background-color: darken($dark-gray, 3%);
     }
@@ -25,5 +30,10 @@
         margin: auto;
         width: 14px;
         height: 14px;
+
+        @media screen and (max-width: 700px) {
+            width: 10px;
+            height: 10px;
+        }
     }
 }

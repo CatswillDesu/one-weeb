@@ -10,10 +10,6 @@
     @media screen and (max-width: 700px) {
         position: relative;
         padding: 0 15px;
-
-        &:first-child {
-            border-top: 2px solid $purple;
-        }
     }
 
     &:last-child {
@@ -92,6 +88,10 @@
             path {
                 fill: #000;
                 transition: fill 200ms;
+
+                @media screen and (max-width: 700px) {
+                    fill: darken($purple, 10%);
+                }
             }
 
             &:hover,
@@ -99,6 +99,10 @@
                 path {
                     fill: lighten($purple, 20%);
                     transition: fill 200ms;
+
+                    @media screen and (max-width: 700px) {
+                        fill: lighten($purple, 30%)
+                    }
                 }
             }
         }
@@ -109,6 +113,10 @@
 
         .modal-button {
             display: inline-block;
+
+            path {
+                fill: lighten($purple, 20%);
+            }
         }
     }
 }

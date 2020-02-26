@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ function CatalogItem({ item, collectionTitles, addTitleToCollection }) {
     const rating = (+averageRating / 10).toFixed(2);
     const imageUrl = posterImage ? posterImage.small : 'not found';
 
-    const [isButtonHidden, toggleButtonHidden] = useState(false);
+    const isButtonHidden = !!collectionTitles[id];
     
     const styles = {
         backgroundImage: `url(${imageUrl})`
@@ -23,7 +23,7 @@ function CatalogItem({ item, collectionTitles, addTitleToCollection }) {
 
     return (
         <li className={`catalog-item ${itemSize === 'small' ? 'sm-size' : 'md-size'}`}>
-        { !isButtonHidden && <button className="to-collection-button" onClick={() => {addTitleToCollection({collectionTitles, titleToAdd: item}); toggleButtonHidden(true)}}>Add to collection</button>}
+        { !isButtonHidden && <button className="to-collection-button" onClick={() => {addTitleToCollection({collectionTitles, titleToAdd: item});}}>Add to collection</button>}
             <Link to={`/anime/${id}`} className="summary-link">
                 <div style={styles} className="poster"></div>
                 <div className="footer">

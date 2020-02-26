@@ -2,7 +2,7 @@ import collectionActionTypes from './collection.types';
 import { addTitleToCollection, changeCollectionTitle } from './collection.utils';
 
 const INITIAL_STATE = {
-    collectionTitles: [],
+    collectionTitles: {},
     isModalHidden: true,
     titleToEdit: null
 }
@@ -15,9 +15,11 @@ function collectionReducer(state = INITIAL_STATE, action) {
                 collectionTitles: addTitleToCollection(action.payload.collectionTitles, action.payload.titleToAdd)
             }
         case collectionActionTypes.REMOVE_TITLE_FROM_COLLECTION:
+            const { [action.payload.titleToRemove.id]: titleToRemove, ...filteredCollection } = action.payload.collectionTitles;
+            
             return {
                 ...state,
-                collectionTitles: action.payload.collectionTitles.filter(title => title.id !== action.payload.titleToRemove.id)
+                collectionTitles: filteredCollection
             }
         case collectionActionTypes.CHANGE_COLLECTION_TITLE:
             return {

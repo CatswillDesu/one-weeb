@@ -15,7 +15,7 @@ function SummaryPage({ title, genresLink, collectionTitles, addTitleToCollection
     const scoreClass = ratingScore < 5 ? 'bad' : (ratingScore < 7 ? 'neutral' : 'good');
     const posterUrl = posterImage ? posterImage.medium : 'not found';
     const releaseYear = releaseDate ? releaseDate.slice(0, 4) : '';
-    const isInCollection = !!collectionTitles.find(title => title.id === id);
+    const isInCollection = !!collectionTitles[id];
 
     const informationData = {
         type,

@@ -8,7 +8,6 @@ const genresFetchLimit = 20;
 
 function* fetchTitlesAsync({ payload: { searchMode, modeSubtype, offset } }) {
     try {
-        console.log(`${rootPath}/anime?filter[${searchMode}]=${modeSubtype}&sort=-userCount&page[offset]=${offset}&page[limit]=16`);
         let titlesData;
         if (searchMode === 'genres') {
             titlesData = yield requestUrl(`${rootPath}/anime?filter[${searchMode}]=${modeSubtype}&sort=-userCount&page[offset]=${offset}&page[limit]=16`);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCollectionTitles, selectIsModalHidden } from '../../redux/collection/collection.selectors';
+import { selectCollectionTitlesArray, selectIsModalHidden } from '../../redux/collection/collection.selectors';
 
 import EditModal from '../../components/edit-modal/edit-modal.component';
 import Backdrop from '../../components/backdrop/backdrop.component';
@@ -9,8 +9,8 @@ import CollectionItem from '../../components/collection-item/collection-item.com
 
 import './collection.styles.scss';
 
-function CollectionPage({ collectionTitles, isModalHidden }) {
-    const mappedCollectionItems = collectionTitles.sort((a, b) => b.assesment - a.assesment).map(({ id, ...otherProps }) => <CollectionItem key={id} item={{...otherProps, id}} />)
+function CollectionPage({ collectionTitlesArray, isModalHidden }) {
+    const mappedCollectionItems = collectionTitlesArray.sort((a, b) => b.assesment - a.assesment).map(({ id, ...otherProps }) => <CollectionItem key={id} item={{...otherProps, id}} />)
 
     return (
         <div className="collection-page">
@@ -22,7 +22,7 @@ function CollectionPage({ collectionTitles, isModalHidden }) {
                 <div className="header-item status">Status</div>
             </div>
             <ul className="collection">
-                { collectionTitles.length ? 
+                { collectionTitlesArray.length ? 
                     mappedCollectionItems
                     :
                    <p className="empty-alert">There's no titles in your collection yet :(</p>
@@ -39,7 +39,7 @@ function CollectionPage({ collectionTitles, isModalHidden }) {
 
 function mapStateToProps() {
     return createStructuredSelector({
-        collectionTitles: selectCollectionTitles,
+        collectionTitlesArray: selectCollectionTitlesArray,
         isModalHidden: selectIsModalHidden
     })
 }

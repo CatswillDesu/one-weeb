@@ -4,6 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectFilterText, selectIsSearchPopupHidden } from '../../redux/search-field/search-field.selectors';
 import { changeFilterText, openSearchPopup, closeSearchPopup, clearSearchField } from '../../redux/search-field/search-field.actions';
 
+import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg';
 import { ReactComponent as CrossIcon } from '../../assets/cross.svg';
 import { default as SearchPopup} from '../search-popup/search-popup.container';
 
@@ -21,9 +22,10 @@ function SearchField({ filterText, changeFilterText, openSearchPopup, closeSearc
     }
 
     return (
-        <div className="search-field-container">
+        <div className={`search-field-container ${!isSearchPopupHidden ? 'active' : ''}`}>
+            <SearchIcon className={`search-icon`} />
             <input
-                className={`search-field ${!isSearchPopupHidden ? 'loading-mode' : ''}`}
+                className={`search-field`}
                 placeholder="Search..."
                 onFocus={openSearchPopup}
                 value={filterText}

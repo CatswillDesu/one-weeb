@@ -16,9 +16,6 @@ function CollectionItem({ item, openEditModal }) {
         backgroundImage: `url(${posterUrl})`
     }
 
-    episodesWatched = episodeCount ? episodesWatched : '0';
-    episodeCount = episodeCount ? episodeCount : '—';
-
     return (
         <li className="collection-item">
             <Link className="sub-container" to={`/anime/${id}`}>
@@ -35,7 +32,7 @@ function CollectionItem({ item, openEditModal }) {
 
 function mapStateToProps() {
     return createStructuredSelector({
-        collectionTitles: selectCollectionTitles
+        collectionTitlesArray: selectCollectionTitles
     })
 }
 

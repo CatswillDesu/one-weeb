@@ -8,6 +8,8 @@
     }
 
     .search-field {
+        z-index: 15;
+        position: relative;
         width: 300px;
         height: 40px;
         padding-left: 45px;
@@ -16,16 +18,8 @@
         border-radius: 10px;
         margin: 8px 20px 8px 0px;
         font-size: 18px;
-        color: darken($gray, 25%);
-        background-color: #fff;
-        background-image: url(../../assets/search-icon.svg);
-        background-repeat: no-repeat;
-        background-position: 9px 50%;
-
-        &.loading-mode {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
+        color: $dark-gray;
+        background-color: $white;
 
         @media screen and (max-width: 700px) {
             width: 100%;
@@ -37,8 +31,26 @@
         }
     }
 
+    .search-icon {
+        position: absolute;
+        z-index: 20;
+        top: 16px;
+        left: 9px;
+
+        @media screen and (max-width: 700px) {
+            top: 22px;
+            left: 9px;
+        }
+
+        path {
+            fill: darken($gray, 10%);
+            transition: fill 350ms;
+        }
+    }
+
     .clear-button {
         position: absolute;
+        z-index: 20;
         top: 20px;
         right: 30px;
         height: 17px;
@@ -55,11 +67,31 @@
         .clear-icon {
             width: 17px;
             height: 17px;
-            fill: $gray;
+            fill: darken($gray, 10%);
+            background-color: #dbdbdb;
             transition: fill 350ms;
 
             &:hover {
-                fill: #520303;
+                fill: lighten($purple, 20%);
+                transition: fill 350ms;
+            }
+        }
+    }
+
+    &.active {
+        .search-field {
+            border-bottom: 2px solid $purple;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+            @media screen and (max-width: 700px) {
+                height: 47px
+            }
+        }
+
+        .search-icon {
+            path {
+                fill: lighten($purple, 20%);
                 transition: fill 350ms;
             }
         }

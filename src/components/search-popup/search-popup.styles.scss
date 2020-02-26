@@ -2,7 +2,7 @@
 
 .search-popup-container {
     position: absolute;
-    z-index: 100;
+    z-index: 10;
     top: 48px;
     left: -2px;
     width: 304px;
@@ -14,7 +14,7 @@
     border-bottom-right-radius: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-    background-color: #fff;
+    background-color: $white;
     overflow: auto;
 
     @media screen and (max-width: 700px) {

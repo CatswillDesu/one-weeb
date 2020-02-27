@@ -10,7 +10,7 @@ import CollectionItem from '../../components/collection-item/collection-item.com
 import './collection.styles.scss';
 
 function CollectionPage({ collectionTitlesArray, isModalHidden }) {
-    const mappedCollectionItems = collectionTitlesArray.sort((a, b) => b.assesment - a.assesment).map(({ id, ...otherProps }) => <CollectionItem key={id} item={{...otherProps, id}} />)
+    const mappedCollectionItems = collectionTitlesArray.sort((a, b) => b.assesment - a.assesment).map(item => <CollectionItem key={item.id} item={item} />)
 
     return (
         <div className="collection-page">

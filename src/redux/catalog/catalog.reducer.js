@@ -49,12 +49,6 @@ export default function catalogReducer(state = INITIAL_STATE, action) {
                 titlesData: null,
                 catalogError: null
             }
-        case catalogActionTypes.CLEAR_GENRES_DATA:
-            return {
-                ...state,
-                genresData: null,
-                genresError: null
-            }
         case catalogActionTypes.SET_CATALOG_MODE:
             return {
                 ...state,

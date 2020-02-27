@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { fetchGenresStart, clearGenresData } from '../../redux/catalog/catalog.actions';
+import { fetchGenresStart } from '../../redux/catalog/catalog.actions';
 import { selectGenresData, selectIsGenresDataLoaded } from '../../redux/catalog/catalog.selectors';
 
 import GenresPage from './genres.component';
@@ -9,12 +9,10 @@ import Spinner from '../../components/spinner/spinner.component';
 
 import './genres.styles.scss';
 
-function GenresPageContainer({ genresData, isGenresDataLoaded, fetchGenresStart, clearGenresData }) {
+function GenresPageContainer({ genresData, isGenresDataLoaded, fetchGenresStart }) {
     useEffect(() => {
         fetchGenresStart();
-
-        return clearGenresData;
-    }, [fetchGenresStart, clearGenresData])
+    }, [fetchGenresStart])
 
     return (
         isGenresDataLoaded ?
@@ -33,8 +31,7 @@ function mapStateToProps() {
 
 function mapDispatchToProps(dispatch) {
     return {
-        fetchGenresStart: () => dispatch(fetchGenresStart()),
-        clearGenresData: () => dispatch(clearGenresData())
+        fetchGenresStart: () => dispatch(fetchGenresStart())
     }
 }
 

@@ -10,7 +10,7 @@ function GenreItem({ name: title, slug }) {
 
     return (
         <li className="genre-item">
-            <Link className="genre-link" to={`/catalog/genres|${slug}`}>
+            <Link className="genre-link" to={`/catalog/genres/${slug}`}>
                 <div style={illustrationStyles} className="illustration" alt={slug} >
                     <h3 className="title">{title}</h3>
                 </div>

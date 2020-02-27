@@ -2,8 +2,6 @@ import React from 'react';
 
 import './title-information.styles.scss';
 
-import DetailLine from '../detail-line/detail-line.component';
-
 function TitleInformation({ type, status, episodeLength, episodeCount, ageRating, averageRating }) {
     type = type === 'TV' ? 'TV Series' : type;
     episodeLength = `${episodeLength} min.` 
@@ -14,12 +12,30 @@ function TitleInformation({ type, status, episodeLength, episodeCount, ageRating
     return (
         <div className="information">
             <strong className="header">Details</strong>
-            <DetailLine type="Type" value={type} />
-            <DetailLine type="Status" value={status} />
-            <DetailLine type="Rating" value={ageRating} />
-            <DetailLine type="Episodes" value={episodeCount} />
-            <DetailLine type="Episode length" value={episodeLength} />
-            <DetailLine type="Community approval" value={averageRating} />
+            <div className="detail-line">
+                <span className="type">Type</span>
+                <span className="value">{type}</span>
+            </div>
+            <div className="detail-line">
+                <span className="type">Status</span>
+                <span className="value">{status}</span>
+            </div>
+            <div className="detail-line">
+                <span className="type">Rating</span>
+                <span className="value">{ageRating}</span>
+            </div>
+            <div className="detail-line">
+                <span className="type">Episodes</span>
+                <span className="value">{episodeCount}</span>
+            </div>
+            <div className="detail-line">
+                <span className="type">Episode length</span>
+                <span className="value">{episodeLength}</span>
+            </div>
+            <div className="detail-line">
+                <span className="type">Community approval</span>
+                <span className="value">{averageRating}</span>
+            </div>
         </div>
     )
 }

@@ -10,7 +10,7 @@ import './catalog-preview.styles.scss';
 
 function CatalogPreview({ previewType, previewData }) {
     const previewsArray = previewData.previewsArray; 
-    const catalogItems = previewsArray.map(({ id, attributes }) => <CatalogItem key={id} item={{...attributes, id, itemSize: 'small'}} />);
+    const catalogItems = previewsArray.map(item => <CatalogItem key={item.id} item={{...item.attributes, id: item.id, itemSize: 'small' }} />);
     const catalogTitle = getTypeTitle(previewType);
    
     return (

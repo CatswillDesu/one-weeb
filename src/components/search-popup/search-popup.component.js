@@ -5,7 +5,7 @@ import PopupItem from '../popup-item/popup-item.component';
 import './search-popup.styles.scss';
 
 function SearchPopup({ filteredTitlesData: { data: filteredTitles } }) {
-    const popupItems = filteredTitles.map(({ id, attributes }) => <PopupItem key={id} id={id} {...attributes} />)
+    const popupItems = filteredTitles.map(item=> <PopupItem key={item.id} id={item.id} {...item} />)
 
     return (
         <div className="search-popup">

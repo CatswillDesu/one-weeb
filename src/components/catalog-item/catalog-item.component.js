@@ -8,7 +8,7 @@ import { addTitleToCollection } from '../../redux/collection/collection.actions'
 import './catalog-item.styes.scss';
 
 function CatalogItem({ item, collectionTitles, addTitleToCollection }) {
-    const { canonicalTitle: fullTitle, posterImage, startDate: releaseDate, averageRating, id, itemSize } = item;
+    let { canonicalTitle: fullTitle, posterImage, startDate: releaseDate, averageRating, id, itemSize } = item;
     const shortTitle = fullTitle.length > 16 ? (fullTitle.slice(0, 14) + '...') : fullTitle;
     const mediumTitle = fullTitle.length > 24 ? (fullTitle.slice(0, 22) + '...') : fullTitle;
     const releaseYear = releaseDate ? releaseDate.slice(0, 4) : '???';

@@ -29,7 +29,7 @@ function* onFetchTitlesStart() {
 
 function* fetchGenresAsync() {
     try {
-        const genresData = yield requestUrl(`${rootPath}/genres?page[limit]=${genresFetchLimit}&fields[anime]=id,posterImage,titles,canonicalTitle,startDate,averageRating,slug,episodeCount`);
+        const genresData = yield requestUrl(`${rootPath}/genres?page[limit]=${genresFetchLimit}`);
         yield put(fetchGenresSuccess(genresData))
     }catch(err) {
         yield put(fetchGenresFailure(err))

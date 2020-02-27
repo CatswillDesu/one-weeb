@@ -71,7 +71,7 @@ function EditModal({ titleToEdit, closeEditModal, isModalHidden, removeTitleFrom
                             <input
                                 type="number" 
                                 min="0" 
-                                max={episodeCount ? episodeCount : '1000'} 
+                                max={+episodeCount ? episodeCount : '1000'} 
                                 data-option-type="progress"
                                 value={tempProgress} 
                                 onChange={handleChange} 

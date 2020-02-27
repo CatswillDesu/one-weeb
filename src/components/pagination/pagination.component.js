@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCurrentPage, selectSearchMode, selectModeSubtype } from '../../redux/catalog/catalog.selectors';
+import { selectCurrentPage } from '../../redux/catalog/catalog.selectors';
 import { defaultPaginationOffset } from '../../utils';
 
 import PaginationLink from '../pagination-link/pagination-link.component';
@@ -48,9 +48,7 @@ function Pagination({ titlesCount, currentPage }) {
 
 function mapStateToProps() {
     return createStructuredSelector({
-        currentPage: selectCurrentPage,
-        searchMode: selectSearchMode,
-        modeSubtype: selectModeSubtype
+        currentPage: selectCurrentPage
     }) 
 }
 

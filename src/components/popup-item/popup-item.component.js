@@ -5,7 +5,7 @@ import { clearSearchField } from '../../redux/search-field/search-field.actions'
 
 import './popup-item.styles.scss';
 
-function PopupItem({ id, canonicalTitle: fullTitle, posterImage, averageRating, ageRating, synopsis: description, startDate: releaseDate, episodeCount, subtype, clearSearchField }) {
+function PopupItem({ id, canonicalTitle: fullTitle, posterImage, averageRating, ageRating, startDate: releaseDate, episodeCount, subtype, clearSearchField }) {
     const shortTitle = fullTitle.length > 16 ? (fullTitle.slice(0, 14) + '...') : fullTitle;
     const mediumTitle = fullTitle.length > 24 ? (fullTitle.slice(0, 22) + '...') : fullTitle;
     const posterUrl = posterImage ? posterImage.tiny : 'not found';
@@ -14,7 +14,7 @@ function PopupItem({ id, canonicalTitle: fullTitle, posterImage, averageRating, 
     const episodesText =  episodeCount !== null ? `${episodeCount} ${+episodeCount > 1 ? 'episodes' : 'episode'}` : 'episodes count is unknown'; 
 
     return (
-        <Link to={`/anime/${id}`} className="popup-item" onClick={clearSearchField} >
+        <Link to={`/summary/${id}`} className="popup-item" onClick={clearSearchField} >
             <h3 className="title">{mediumTitle}</h3>
             <div className="sub-container">
                 <img className="poster" src={posterUrl} alt={shortTitle} />

@@ -24,7 +24,7 @@ function CatalogItem({ item, collectionTitles, addTitleToCollection }) {
     return (
         <li className={`catalog-item ${itemSize === 'small' ? 'sm-size' : 'md-size'}`}>
         { !isButtonHidden && <button className="to-collection-button" onClick={() => {addTitleToCollection({collectionTitles, titleToAdd: item});}}>Add to collection</button>}
-            <Link to={`/anime/${id}`} className="summary-link">
+            <Link to={`/summary/${id}`} className="summary-link">
                 <div style={styles} className="poster"></div>
                 <div className="footer">
                     <h4 className="title">{itemSize === 'small' ? shortTitle : mediumTitle}</h4>

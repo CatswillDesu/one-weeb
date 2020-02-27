@@ -37,9 +37,9 @@ export const selectIsTitlesLoaded = createSelector(
     catalog => catalog.isTitlesLoaded
 )
 
-export const selectSearchMode = createSelector(
+export const selectCatalogMode = createSelector(
     selectCatalog,
-    catalog => catalog.searchMode
+    catalog => catalog.catalogMode
 )
 
 export const selectModeSubtype = createSelector(

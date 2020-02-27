@@ -1,36 +1,31 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { fetchTitlesStart, setSearchMode, setModeSubtype, clearCatalogTitles } from '../../redux/catalog/catalog.actions';
+import { fetchTitlesStart, setCatalogMode, setModeSubtype, clearCatalogTitles } from '../../redux/catalog/catalog.actions';
 import { selectTitlesData, selectCurrentPage } from '../../redux/catalog/catalog.selectors';
-import { defaultPaginationOffset, getTypeTitle } from '../../utils';
+import { defaultPaginationOffset } from '../../utils';
 
 import Spinner from '../../components/spinner/spinner.component';
 import CatalogPage from './catalog.component';
 
-function CatalogContainer({ location, setSearchMode, setModeSubtype, currentPage, fetchTitlesStart, clearCatalogTitles, titlesData }) {
-    const pathname = location.pathname;
-    const pathSlugs = pathname.split('/').slice(2);
-    const searchMode = pathSlugs[0];
-    const modeTitle =  searchMode === 'genres' ? searchMode.slice(0, -1) : getTypeTitle(searchMode).toUpperCase();
-    const modeSubtype = pathSlugs[1];
-    const subtypeTitle =  modeSubtype ? modeSubtype.split('-').map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' ') : '';
+function CatalogContainer({ match, setCatalogMode, setModeSubtype, currentPage, fetchTitlesStart, clearCatalogTitles, titlesData, withSubtype }) {
+    const { catalogMode, modeSubtype } = match.params;
 
     useEffect(() => {
-        setSearchMode(searchMode);
-        setModeSubtype(modeSubtype);
+        setCatalogMode(catalogMode);
+        setModeSubtype(withSubtype ? modeSubtype :  null);
 
-        return clearCatalogTitles;
-    }, [setSearchMode, searchMode, setModeSubtype, modeSubtype, clearCatalogTitles])
+        return clearCatalogTitles
+    }, [setCatalogMode, catalogMode, setModeSubtype, modeSubtype, withSubtype, clearCatalogTitles])
 
     useEffect(() => {
-        fetchTitlesStart(searchMode, modeSubtype, ((currentPage - 1) * defaultPaginationOffset));
-    }, [fetchTitlesStart, clearCatalogTitles, searchMode, modeSubtype, currentPage])
+        fetchTitlesStart(catalogMode, modeSubtype, ((currentPage - 1) * defaultPaginationOffset));
+    }, [fetchTitlesStart, catalogMode, modeSubtype, currentPage])
 
 
     return (
        !!titlesData ? 
-       (<CatalogPage catalogTitles={{ modeTitle, subtypeTitle }} {...titlesData} />)
+       (<CatalogPage withSubtype={withSubtype} />)
        :
        (<Spinner />)
     )
@@ -39,7 +34,7 @@ function CatalogContainer({ location, setSearchMode, setModeSubtype, currentPage
 function mapDispatchToProps(dispatch) {
     return {
         fetchTitlesStart: (searchMode, modeSubtype, offset) => dispatch(fetchTitlesStart(searchMode, modeSubtype, offset)),
-        setSearchMode: newSearchMode => dispatch(setSearchMode(newSearchMode)),
+        setCatalogMode: newCatalogMode => dispatch(setCatalogMode(newCatalogMode)),
         setModeSubtype: newModeSubtype => dispatch(setModeSubtype(newModeSubtype)),
         clearCatalogTitles: () => dispatch(clearCatalogTitles())
     }

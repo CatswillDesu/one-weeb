@@ -20,9 +20,3 @@ export function fetchPreviewsFailure(error) {
         payload: error
     }
 }
-
-export function clearPreviewTitles() {
-    return {
-        type: catalogPreviewActionTypes.CLEAR_PREVIEW_TITLES
-    }
-}

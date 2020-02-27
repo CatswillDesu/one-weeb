@@ -2,40 +2,26 @@ import { createSelector } from 'reselect';
 
 const selectCatalogPreview = state => state.catalogPreview;
 
-export const selectPreviews = createSelector(
+export const selectPreviewsCollection = createSelector(
     selectCatalogPreview,
-    catalogPreviews => catalogPreviews.previewsData
+    catalogPreviews => catalogPreviews.previewsCollection
 )
 
-export const selectTopTrendingPreview = createSelector(
-    selectPreviews,
-    previewsData => previewsData.topTrending
+export const selectPreviewTypes = createSelector(
+    selectCatalogPreview,
+    catalogPreviews => catalogPreviews.previewTypes
 )
 
-export const selectTopRatedPreview = createSelector(
-    selectPreviews,
-    previewsData => previewsData.topRated
+export const selectPreviewCollectionItem = (type) => createSelector(
+    selectPreviewsCollection,
+    previewsCollection => previewsCollection.find(preview => preview.previewType === type)
 )
 
-export const selectTopPopularPreview = createSelector(
-    selectPreviews,
-    previewsData => previewsData.topPopular
+export const selectIsPreviewsLoaded = createSelector(
+    [selectPreviewsCollection, selectPreviewTypes],
+    (previewsCollection, previewTypes) => previewsCollection.length === previewTypes.length
 )
 
-export const selectIsTopTrendingPreviewLoaded = createSelector(
-    selectPreviews,
-    previewsData => !!previewsData.topTrending
-)
-
-export const selectIsTopRatedPreviewLoaded = createSelector(
-    selectPreviews,
-    previewsData => !!previewsData.topRated
-)
-
-export const selectIsTopPopularPreviewLoaded = createSelector(
-    selectPreviews,
-    previewsData => !!previewsData.topPopular
-)
 
 export const selectPreviewsError = createSelector(
     selectCatalogPreview,

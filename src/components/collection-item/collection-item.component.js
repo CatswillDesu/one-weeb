@@ -18,7 +18,7 @@ function CollectionItem({ item, openEditModal }) {
 
     return (
         <li className="collection-item">
-            <Link className="sub-container" to={`/anime/${id}`}>
+            <Link className="sub-container" to={`/summary/${id}`}>
                 <div className="poster" style={posterStyles} />
                 <h4 className="title">{title}</h4>
             </Link>

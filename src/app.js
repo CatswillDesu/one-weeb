@@ -24,8 +24,9 @@ function App() {
             <Route exact path="/" component={Homepage} />
             <Route path="/genres" component={GenresPage} />
             <Route path="/collection" component={CollectionPage} />
-            <Route path="/anime/:titleId" render={(props) => <SummaryPage {...props} type={'exact'} />} />
-            <Route path="/catalog/:catalogId" render={(props) => <CatalogPage {...props} type={'filter'} />} />
+            <Route path="/summary/:titleId" render={(props) => <SummaryPage {...props} />} />
+            <Route exact path="/catalog/:catalogMode" render={(props) => <CatalogPage {...props} withSubtype={false} />} />
+            <Route path="/catalog/:catalogMode/:modeSubtype" render={(props) => <CatalogPage {...props} withSubtype />} />
           </Suspense>
         </ErrorBoundary>
       </Switch>

@@ -1,59 +1,40 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectTopRatedPreview, selectTopTrendingPreview, selectTopPopularPreview, selectIsTopTrendingPreviewLoaded, selectIsTopRatedPreviewLoaded, selectIsTopPopularPreviewLoaded } from '../../redux/catalog-preview/catalog-preview.selectors';
-import { fetchPreviewsStart, clearPreviewTitles } from '../../redux/catalog-preview/catalog-preview.actions';
+import { selectPreviewTypes, selectIsPreviewsLoaded, selectPreviewsCollection } from '../../redux/catalog-preview/catalog-preview.selectors';
+import { fetchPreviewsStart } from '../../redux/catalog-preview/catalog-preview.actions';
 
 import CatalogPreview from './catalog-preview.component';
 import Spinner from '../spinner/spinner.component';
 
-function CatalogPreviewContainer({ previewType, topRatedPreview, topTrendingPreview, topPopularPreview,  fetchPreviewsStart, isTopTrendingPreviewLoaded, isTopRatedPreviewLoaded, isTopPopularPreviewLoaded, clearPreviewTitles }) {
+function CatalogPreviewContainer({ fetchPreviewsStart, previewTypes, isPreviewsLoaded, previewsCollection }) {
+    const mappedCatalogPreviews = isPreviewsLoaded && previewsCollection.map((preview, index) => <CatalogPreview key={preview.previewType} previewType={`${previewTypes[index]}`} />)
 
     useEffect(() => {
-        fetchPreviewsStart(previewType);
+        if (!isPreviewsLoaded) previewTypes.forEach(previewType => fetchPreviewsStart(previewType));
+    }, [previewTypes, isPreviewsLoaded, fetchPreviewsStart])
 
-        return (previewType === 'top-popular' ? clearPreviewTitles : undefined)
-    }, [previewType, fetchPreviewsStart, clearPreviewTitles])
-
-    switch (previewType) {
-        case 'top-trending':
-            return (isTopTrendingPreviewLoaded ? 
-                <CatalogPreview type="top-trending" previewItems={topTrendingPreview} />
-                :
-                <Spinner />)
-        case 'top-rated': 
-            return (isTopRatedPreviewLoaded ?
-                <CatalogPreview type="top-rated" previewItems={topRatedPreview} />
-                :
-                <Spinner />)
-        case 'top-popular':
-            return (isTopPopularPreviewLoaded ?
-                <CatalogPreview type="top-popular" previewItems={topPopularPreview} />
-                :
-                <Spinner />)
-        default: 
-                return <Spinner />
-    }
+    return (
+        isPreviewsLoaded ?
+        <div className="previews-collection">
+            {mappedCatalogPreviews}
+        </div>
+        :
+        <Spinner />
+    )
 }
-
-
-
 
 function mapStateToProps() {
     return createStructuredSelector({
-        topRatedPreview: selectTopRatedPreview,
-        topTrendingPreview: selectTopTrendingPreview,
-        topPopularPreview: selectTopPopularPreview,
-        isTopRatedPreviewLoaded: selectIsTopRatedPreviewLoaded,
-        isTopTrendingPreviewLoaded: selectIsTopTrendingPreviewLoaded,
-        isTopPopularPreviewLoaded: selectIsTopPopularPreviewLoaded
+        previewTypes: selectPreviewTypes,
+        isPreviewsLoaded: selectIsPreviewsLoaded,
+        previewsCollection: selectPreviewsCollection
     })
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        fetchPreviewsStart: previewType => dispatch(fetchPreviewsStart(previewType)),
-        clearPreviewTitles: () => dispatch(clearPreviewTitles())
+        fetchPreviewsStart: previewType => dispatch(fetchPreviewsStart(previewType))
     }
 }
 

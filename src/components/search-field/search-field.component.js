@@ -37,7 +37,7 @@ function SearchField({ filterText, changeFilterText, openSearchPopup, closeSearc
                 </button>
                 : 
                 null}
-            { isSearchPopupHidden ? null : <SearchPopup />}
+            { !isSearchPopupHidden && <SearchPopup />}
         </div>
     )
 }

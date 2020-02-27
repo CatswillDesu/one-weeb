@@ -1,9 +1,9 @@
 import catalogActionTypes from './catalog.types';
 
-export function setSearchMode(newSearchMode) {
+export function setCatalogMode(newCatalogMode) {
     return {
-        type: catalogActionTypes.SET_SEARCH_MODE,
-        payload: newSearchMode
+        type: catalogActionTypes.SET_CATALOG_MODE,
+        payload: newCatalogMode
     }
 }
 

@@ -2,7 +2,7 @@ import catalogActionTypes from './catalog.types';
 
 const INITIAL_STATE = {
     currentPage: 1,
-    searchMode: null,
+    catalogMode: null,
     modeSubtype: null,
     isTitlesLoaded: false,
     titlesData: null,
@@ -55,10 +55,10 @@ export default function catalogReducer(state = INITIAL_STATE, action) {
                 genresData: null,
                 genresError: null
             }
-        case catalogActionTypes.SET_SEARCH_MODE:
+        case catalogActionTypes.SET_CATALOG_MODE:
             return {
                 ...state,
-                searchMode: action.payload
+                catalogMode: action.payload
             }
         case catalogActionTypes.SET_MODE_SUBTYPE:
             return {

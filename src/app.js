@@ -13,7 +13,6 @@ const GenresPage = lazy(() => import('./pages/genres/genres.container'));
 const CatalogPage = lazy(() => import('./pages/catalog/catalog.container'));
 const SummaryPage = lazy(() => import('./pages/summary/summary.container'));
 
-
 function App() {
   return (
     <div className="container">

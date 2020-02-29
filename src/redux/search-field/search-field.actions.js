@@ -40,6 +40,13 @@ export function fetchFilteredTitlesFailure(error) {
     }
 }
 
+export function changeRouteLocation(locationPathname) {
+    return {
+        type: searchFieldTypes.CHANGE_ROUTE_LOCATION,
+        payload: locationPathname
+    }
+}
+
 export function clearSearchField() {
     return {
         type: searchFieldTypes.CLEAR_SEARCH_FIELD

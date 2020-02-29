@@ -55,12 +55,6 @@ export function fetchGenresFailure(error) {
     }
 }
 
-export function clearGenresData() {
-    return {
-        type: catalogActionTypes.CLEAR_GENRES_DATA
-    }
-}
-
 export function clearCatalogTitles() {
     return {
         type: catalogActionTypes.CLEAR_CATALOG_TITLES

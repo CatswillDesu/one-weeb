@@ -1,4 +1,4 @@
-import { takeEvery, put, all } from 'redux-saga/effects';
+import { take, takeLatest, put, all } from 'redux-saga/effects';
 
 import catalogActionTypes from './catalog.types';
 import { fetchTitlesSuccess, fetchTitlesFailure, fetchGenresSuccess, fetchGenresFailure } from './catalog.actions';
@@ -21,7 +21,7 @@ function* fetchTitlesAsync({ payload: { searchMode, modeSubtype, offset } }) {
 }
 
 function* onFetchTitlesStart() {
-    yield takeEvery(
+    yield takeLatest(
         catalogActionTypes.FETCH_TITLES_START,
         fetchTitlesAsync
     )
@@ -37,10 +37,8 @@ function* fetchGenresAsync() {
 }
 
 function* onFetchGenresStart() {
-    yield takeEvery(
-        catalogActionTypes.FETCH_GENRES_START,
-        fetchGenresAsync
-    )
+    yield take(catalogActionTypes.FETCH_GENRES_START);
+    yield fetchGenresAsync();
 }
 
 export default function* catalogRootSaga() {

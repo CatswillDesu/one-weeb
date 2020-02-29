@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectFilterText, selectIsSearchPopupHidden } from '../../redux/search-field/search-field.selectors';
-import { changeFilterText, openSearchPopup, closeSearchPopup, clearSearchField } from '../../redux/search-field/search-field.actions';
+import { changeFilterText, openSearchPopup, closeSearchPopup, clearSearchField, changeRouteLocation } from '../../redux/search-field/search-field.actions';
 
 import { ReactComponent as SearchIcon } from '../../assets/search-icon.svg';
 import { ReactComponent as CrossIcon } from '../../assets/cross.svg';
@@ -10,7 +11,11 @@ import { default as SearchPopup} from '../search-popup/search-popup.container';
 
 import './search-field.styles.scss';
 
-function SearchField({ filterText, changeFilterText, openSearchPopup, closeSearchPopup, isSearchPopupHidden, clearSearchField }) {
+function SearchField({ filterText, changeFilterText, openSearchPopup, closeSearchPopup, isSearchPopupHidden, clearSearchField, location, changeRouteLocation }) {
+    useEffect(() => {
+        changeRouteLocation(location.pathname)
+    }, [location, changeRouteLocation])
+
     function handleChange(event) {
         const { value } = event.target;
         changeFilterText(value);
@@ -54,8 +59,9 @@ function mapDispatchToProps(dispatch) {
         changeFilterText: newFilterText => dispatch(changeFilterText(newFilterText)),
         openSearchPopup: () => dispatch(openSearchPopup()),
         closeSearchPopup: () => dispatch(closeSearchPopup()),
-        clearSearchField: () => dispatch(clearSearchField())
+        clearSearchField: () => dispatch(clearSearchField()),
+        changeRouteLocation: locationPathname => dispatch(changeRouteLocation(locationPathname))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchField);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchField));

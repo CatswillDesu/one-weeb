@@ -5,7 +5,8 @@ const INITIAL_STATE = {
     hidden: true,
     isLoading: false,
     filteredTitlesData: null,
-    searchFieldError: null
+    searchFieldError: null,
+    locationPathname: '/'
 }
 
 function searchFieldReducer(state = INITIAL_STATE, action) {
@@ -42,6 +43,11 @@ function searchFieldReducer(state = INITIAL_STATE, action) {
                 ...state,
                 searchFieldError: action.payload
             }
+        case searchFieldTypes.CHANGE_ROUTE_LOCATION:
+            return (() => {
+                if (action.payload !== state.locationPathname) return { ...state, locationPathname: action.payload, hidden: true };
+                return state;
+            })()
         case searchFieldTypes.CLEAR_FILTERED_TILES:
             return {
                 ...state,

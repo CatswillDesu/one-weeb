@@ -17,18 +17,18 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <Switch>
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner/>}>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner/>}>
+          <Switch>
             <Route exact path="/" component={Homepage} />
             <Route path="/genres" component={GenresPage} />
             <Route path="/collection" component={CollectionPage} />
             <Route path="/summary/:titleId" render={(props) => <SummaryPage {...props} />} />
             <Route exact path="/catalog/:catalogMode" render={(props) => <CatalogPage {...props} withSubtype={false} />} />
             <Route path="/catalog/:catalogMode/:modeSubtype" render={(props) => <CatalogPage {...props} withSubtype />} />
-          </Suspense>
-        </ErrorBoundary>
-      </Switch>
+          </Switch>
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }
